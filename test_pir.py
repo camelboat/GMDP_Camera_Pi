@@ -6,6 +6,7 @@ from time import sleep
 #GPIO.setup(7, GPIO.IN)
 #GPIO.setup(21, GPIO.OUT)
 
+
 led21 = LED(21)
 pir = MotionSensor(7)
 
