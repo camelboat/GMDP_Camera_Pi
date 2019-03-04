@@ -35,6 +35,8 @@ avg = None
 lastUploaded = datetime.datetime.now()
 motionCounter = 0
 
+rectangle_num = 0
+
 for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     frame = f.array
     timestamp = datetime.datetime.now()
@@ -66,6 +68,7 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
 
         (x,y,w,h) = cv2.boundingRect(c)
         cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 255, 0), 2)
+        rectangle_num+=1
         text = "Occupied"
 
     ts = timestamp.strftime("%A %d %B %Y %I: %M:%S%p")
@@ -101,6 +104,7 @@ for f in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True
         if key == ord("q"):
             break
 
-    print("counter=",motionCounter);
+    print(rectangle_num)
+    rectangle_num=0
     rawCapture.truncate(0)
 
